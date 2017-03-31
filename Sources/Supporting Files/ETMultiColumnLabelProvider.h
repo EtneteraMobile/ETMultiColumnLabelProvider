@@ -2,7 +2,7 @@
 //  ETMultiColumnLabelProvider.h
 //  ETMultiColumnLabelProvider
 //
-//  Created by Jan Čislinský on 06/03/2017.
+//  Created by Jan Čislinský on 31/03/2017.
 //  Copyright © 2017 Etnetera, a. s. All rights reserved.
 //
 

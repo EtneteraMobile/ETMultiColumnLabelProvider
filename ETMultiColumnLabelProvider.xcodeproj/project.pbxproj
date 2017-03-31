@@ -10,7 +10,7 @@
 		71CB197E1E8E6B1100BB1093 /* Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71CB19781E8E6B1100BB1093 /* Common.swift */; };
 		71CB197F1E8E6B1100BB1093 /* LabelProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71CB19791E8E6B1100BB1093 /* LabelProvider.swift */; };
 		71CB19801E8E6B1100BB1093 /* MultiLabelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71CB197A1E8E6B1100BB1093 /* MultiLabelView.swift */; };
-		71CB19811E8E6B1100BB1093 /* ETMultiColumnLabelProvider.h in Headers */ = {isa = PBXBuildFile; fileRef = 71CB197C1E8E6B1100BB1093 /* ETMultiColumnLabelProvider.h */; };
+		71CB19811E8E6B1100BB1093 /* ETMultiColumnLabelProvider.h in Headers */ = {isa = PBXBuildFile; fileRef = 71CB197C1E8E6B1100BB1093 /* ETMultiColumnLabelProvider.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		71CB19821E8E6B1100BB1093 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 71CB197D1E8E6B1100BB1093 /* Info.plist */; };
 /* End PBXBuildFile section */
 
