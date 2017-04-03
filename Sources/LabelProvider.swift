@@ -96,13 +96,11 @@ public struct LabelProvider: ViewProvider {
 
         case let .multiLine(attText):
             let s = CGSize(width: width, height: attText.calculateHeight(inWidth: width, isMultiline: true))
-            print("multiline: " + attText.string + " \(s.height)")
             return s
 
         case let .lines(lines):
             let height = lines.reduce(CGFloat(0.0)) { return $0 + self.size(for: width, $1).height }
             let s = CGSize(width: width, height: height)
-            print("lines \(s.height)")
             return s
         }
     }
