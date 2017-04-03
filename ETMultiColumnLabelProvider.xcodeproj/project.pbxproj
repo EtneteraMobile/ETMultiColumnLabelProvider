@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		71207C2C1E922DB700C51AD8 /* ETMultiColumnView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 71207C2B1E922DB700C51AD8 /* ETMultiColumnView.framework */; };
 		71CB197E1E8E6B1100BB1093 /* Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71CB19781E8E6B1100BB1093 /* Common.swift */; };
 		71CB197F1E8E6B1100BB1093 /* LabelProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71CB19791E8E6B1100BB1093 /* LabelProvider.swift */; };
 		71CB19801E8E6B1100BB1093 /* MultiLabelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71CB197A1E8E6B1100BB1093 /* MultiLabelView.swift */; };
@@ -15,6 +16,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		71207C2B1E922DB700C51AD8 /* ETMultiColumnView.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ETMultiColumnView.framework; path = Carthage/Build/iOS/ETMultiColumnView.framework; sourceTree = "<group>"; };
 		71B788591E6D47C900F5D235 /* ETMultiColumnLabelProvider.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ETMultiColumnLabelProvider.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		71CB19781E8E6B1100BB1093 /* Common.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Common.swift; sourceTree = "<group>"; };
 		71CB19791E8E6B1100BB1093 /* LabelProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LabelProvider.swift; sourceTree = "<group>"; };
@@ -28,6 +30,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				71207C2C1E922DB700C51AD8 /* ETMultiColumnView.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -37,6 +40,7 @@
 		71B7884F1E6D47C900F5D235 = {
 			isa = PBXGroup;
 			children = (
+				71207C2B1E922DB700C51AD8 /* ETMultiColumnView.framework */,
 				71CB19771E8E6B1100BB1093 /* Sources */,
 				71B7885A1E6D47C900F5D235 /* Products */,
 			);
@@ -258,6 +262,10 @@
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				ENABLE_TESTABILITY = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = "$(SRCROOT)/Sources/Supporting Files/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
@@ -277,6 +285,10 @@
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				ENABLE_TESTABILITY = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = "$(SRCROOT)/Sources/Supporting Files/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;

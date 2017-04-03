@@ -7,10 +7,11 @@
 //
 
 import Foundation
+import ETMultiColumnView
 
 // MARK: - LabelProvider
 
-public struct LabelProvider {
+public struct LabelProvider: ViewProvider {
 
     // MARK: - Variables
     // MARK: public
