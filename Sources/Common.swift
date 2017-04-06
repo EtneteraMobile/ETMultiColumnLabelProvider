@@ -16,6 +16,6 @@ extension NSAttributedString {
         let widthConstraints = (isMultiline == true ? width : CGFloat.max)
         let boundingRect = self.boundingRectWithSize(CGSize(width: widthConstraints, height: CGFloat.max), options: [ .UsesLineFragmentOrigin, .UsesFontLeading ], context: nil)
 
-        return boundingRect.integral.size
+        return boundingRect.size
     }
 }

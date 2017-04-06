@@ -89,20 +89,24 @@ public struct LabelProvider: ViewProvider {
     }
 
     public func boundingSize(widthConstraint width: CGFloat, _ style: Content.Style) -> CGSize {
+        let size: CGSize
         switch style {
         case let .oneLine(attText):
-            let s = attText.calculate(inWidth: width, isMultiline: false)
-            return s
+            size = attText.calculate(inWidth: width, isMultiline: false)
 
         case let .multiLine(attText):
-            let s = attText.calculate(inWidth: width, isMultiline: true)
-            return s
+            size = attText.calculate(inWidth: width, isMultiline: true)
 
         case let .lines(lines):
-            let height = lines.reduce(CGFloat(0.0)) { return $0 + self.boundingSize(widthConstraint: width, $1).height }
-            let s = CGSize(width: width, height: height)
-            return s
+            var maxWidth = CGFloat.min
+            let height = lines.reduce(CGFloat(0.0)) {
+                let s = self.boundingSize(widthConstraint: width, $1)
+                maxWidth = max(maxWidth, s.width)
+                return $0 + s.height
+            }
+            size = CGSize(width: maxWidth, height: height)
         }
+        return CGSize(width: min(width, size.width), height: size.height)
     }
 }
 
