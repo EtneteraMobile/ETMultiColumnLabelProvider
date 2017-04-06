@@ -52,8 +52,8 @@ public struct LabelProvider: ViewProvider {
         customize(view, content.style)
     }
 
-    public func size(for width: CGFloat) -> CGSize {
-        return size(for: width, content.style)
+    public func boundingSize(widthConstraint width: CGFloat) -> CGSize {
+        return boundingSize(widthConstraint: width, content.style)
     }
 
     // MARK: - Customize and size for recursion
@@ -88,18 +88,18 @@ public struct LabelProvider: ViewProvider {
         }
     }
 
-    public func size(for width: CGFloat, _ style: Content.Style) -> CGSize {
+    public func boundingSize(widthConstraint width: CGFloat, _ style: Content.Style) -> CGSize {
         switch style {
         case let .oneLine(attText):
-            let s = CGSize(width: width, height: attText.calculateHeight(inWidth: width, isMultiline: false))
+            let s = attText.calculate(inWidth: width, isMultiline: false)
             return s
 
         case let .multiLine(attText):
-            let s = CGSize(width: width, height: attText.calculateHeight(inWidth: width, isMultiline: true))
+            let s = attText.calculate(inWidth: width, isMultiline: true)
             return s
 
         case let .lines(lines):
-            let height = lines.reduce(CGFloat(0.0)) { return $0 + self.size(for: width, $1).height }
+            let height = lines.reduce(CGFloat(0.0)) { return $0 + self.boundingSize(widthConstraint: width, $1).height }
             let s = CGSize(width: width, height: height)
             return s
         }
