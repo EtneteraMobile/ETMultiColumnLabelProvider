@@ -53,7 +53,7 @@ public struct LabelProvider: ViewProvider {
     }
 
     public func boundingSize(widthConstraint width: CGFloat) -> CGSize {
-        return boundingSize(widthConstraint: width, content.style)
+        return boundingSize(widthConstraint: width, content)
     }
 
     // MARK: - Customize and size for recursion
@@ -82,15 +82,15 @@ public struct LabelProvider: ViewProvider {
             guard lines.count == labels.count else { preconditionFailure("Specs couns different from labels count") }
 
             labels.enumerate().forEach {
-                let lineStyle = lines[$0.index]
-                self.customize($0.element, lineStyle)
+                let lineContent = lines[$0.index]
+                self.customize($0.element, lineContent.style)
             }
         }
     }
 
-    public func boundingSize(widthConstraint width: CGFloat, _ style: Content.Style) -> CGSize {
+    public func boundingSize(widthConstraint width: CGFloat, _ content: Content) -> CGSize {
         let size: CGSize
-        switch style {
+        switch content.style {
         case let .oneLine(attText):
             size = attText.calculate(inWidth: width, isMultiline: false)
 
@@ -106,7 +106,7 @@ public struct LabelProvider: ViewProvider {
             }
             size = CGSize(width: maxWidth, height: height)
         }
-        return CGSize(width: min(width, size.width), height: size.height)
+        return CGSize(width: min(width, size.width), height: max(content.minHeight ?? CGFloat.min, size.height))
     }
 }
 
@@ -114,17 +114,23 @@ public struct LabelProvider: ViewProvider {
 
 public extension LabelProvider {
     
-    public struct Content {
+    public struct Content: Hashable {
         let style: Style
+        let minHeight: CGFloat?
 
-        public init(style: Style) {
+        public var hashValue: Int {
+            return style.hashValue + (minHeight?.hashValue ?? 0)
+        }
+
+        public init(style: Style, minHeight: CGFloat? = nil) {
             self.style = style
+            self.minHeight = minHeight
         }
 
         public indirect enum Style: Hashable {
             case oneLine(NSAttributedString)
             case multiLine(NSAttributedString)
-            case lines([Style])
+            case lines([Content])
 
             public var hashValue: Int {
                 switch self {
@@ -140,6 +146,10 @@ public extension LabelProvider {
 // MARK: - Equatable
 
 public func ==(lhs: LabelProvider, rhs: LabelProvider) -> Bool {
+    return lhs.hashValue == rhs.hashValue
+}
+
+public func ==(lhs: LabelProvider.Content, rhs: LabelProvider.Content) -> Bool {
     return lhs.hashValue == rhs.hashValue
 }
 
