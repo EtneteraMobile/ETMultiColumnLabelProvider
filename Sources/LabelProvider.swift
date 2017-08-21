@@ -48,7 +48,7 @@ public struct LabelProvider: ViewProvider {
         }
     }
 
-    public func customize(view view: UIView) {
+    public func customize(view: UIView) {
         customize(view, content.style)
     }
 
@@ -58,7 +58,7 @@ public struct LabelProvider: ViewProvider {
 
     // MARK: - Customize and size for recursion
 
-    public func customize(view: UIView, _ style: Content.Style) {
+    public func customize(_ view: UIView, _ style: Content.Style) {
 
         switch style {
         case let .oneLine(attText):
@@ -67,7 +67,7 @@ public struct LabelProvider: ViewProvider {
             v.attributedText = attText
 
             v.numberOfLines = 1
-            v.lineBreakMode = .ByTruncatingTail
+            v.lineBreakMode = .byTruncatingTail
 
         case let .multiLine(attText):
             guard let v = view as? UILabel else { preconditionFailure("Expected: UILabel")}
@@ -75,14 +75,14 @@ public struct LabelProvider: ViewProvider {
             v.attributedText = attText
 
             v.numberOfLines = 0
-            v.lineBreakMode = .ByTruncatingTail
+            v.lineBreakMode = .byTruncatingTail
 
         case let .lines(lines):
             guard let v = view as? MultiLabelsView, let labels = v.subviews as? [UILabel] else { preconditionFailure("Expected: MultiLabelsView") }
             guard lines.count == labels.count else { preconditionFailure("Specs couns different from labels count") }
 
-            labels.enumerate().forEach {
-                let lineContent = lines[$0.index]
+            labels.enumerated().forEach {
+                let lineContent = lines[$0.offset]
                 self.customize($0.element, lineContent.style)
             }
         }
@@ -98,7 +98,7 @@ public struct LabelProvider: ViewProvider {
             size = attText.calculate(inWidth: width, isMultiline: true)
 
         case let .lines(lines):
-            var maxWidth = CGFloat.min
+            var maxWidth = CGFloat.leastNormalMagnitude
             let height = lines.reduce(CGFloat(0.0)) {
                 let s = self.boundingSize(widthConstraint: width, $1)
                 maxWidth = max(maxWidth, s.width)
@@ -106,7 +106,7 @@ public struct LabelProvider: ViewProvider {
             }
             size = CGSize(width: maxWidth, height: height)
         }
-        return CGSize(width: min(width, size.width), height: max(content.minHeight ?? CGFloat.min, size.height))
+        return CGSize(width: min(width, size.width), height: max(content.minHeight ?? CGFloat.leastNormalMagnitude, size.height))
     }
 }
 

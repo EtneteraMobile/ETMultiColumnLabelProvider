@@ -117,6 +117,7 @@
 				TargetAttributes = {
 					71B788581E6D47C900F5D235 = {
 						CreatedOnToolsVersion = 7.3.1;
+						LastSwiftMigration = 0830;
 					};
 				};
 			};
@@ -274,6 +275,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = cz.etnetera.ETMultiColumnLabelProvider;
 				PRODUCT_NAME = ETMultiColumnLabelProvider;
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -298,6 +300,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = cz.etnetera.ETMultiColumnLabelProvider;
 				PRODUCT_NAME = ETMultiColumnLabelProvider;
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};

@@ -13,8 +13,8 @@ extension NSAttributedString {
 
     func calculate(inWidth width: CGFloat, isMultiline: Bool) -> CGSize {
 
-        let widthConstraints = (isMultiline == true ? width : CGFloat.max)
-        let boundingRect = self.boundingRectWithSize(CGSize(width: widthConstraints, height: CGFloat.max), options: [ .UsesLineFragmentOrigin, .UsesFontLeading ], context: nil)
+        let widthConstraints = (isMultiline == true ? width : CGFloat.greatestFiniteMagnitude)
+        let boundingRect = self.boundingRect(with: CGSize(width: widthConstraints, height: CGFloat.greatestFiniteMagnitude), options: [ .usesLineFragmentOrigin, .usesFontLeading ], context: nil)
 
         return boundingRect.size
     }

@@ -38,7 +38,7 @@ class MultiLabelsView: UIView {
 
         if labels.count > 1 {
             let _ = labels.reduce(CGFloat(0)) { top, label in
-                let size = label.sizeThatFits(CGSize(width: frame.width, height: CGFloat.max))
+                let size = label.sizeThatFits(CGSize(width: frame.width, height: CGFloat.greatestFiniteMagnitude))
                 label.frame = CGRect(x: 0.0, y: top, width: frame.width, height: size.height)
                 return top + label.frame.size.height
             }
