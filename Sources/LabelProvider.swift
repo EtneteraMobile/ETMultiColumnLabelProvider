@@ -114,13 +114,9 @@ public struct LabelProvider: ViewProvider {
 
 public extension LabelProvider {
     
-    public struct Content: Hashable {
+    struct Content: Hashable {
         let style: Style
         let minHeight: CGFloat?
-
-        public var hashValue: Int {
-            return style.hashValue + (minHeight?.hashValue ?? 0)
-        }
 
         public init(style: Style, minHeight: CGFloat? = nil) {
             self.style = style
@@ -131,29 +127,6 @@ public extension LabelProvider {
             case oneLine(NSAttributedString)
             case multiLine(NSAttributedString)
             case lines([Content])
-
-            public var hashValue: Int {
-                switch self {
-                case let .oneLine(text): return 0 ^ text.hashValue
-                case let .multiLine(text): return 1 ^ text.hashValue
-                case let .lines(lines): return lines.reduce(2) { $0 ^ $1.hashValue }
-                }
-            }
         }
     }
 }
-
-// MARK: - Equatable
-
-public func ==(lhs: LabelProvider, rhs: LabelProvider) -> Bool {
-    return lhs.hashValue == rhs.hashValue
-}
-
-public func ==(lhs: LabelProvider.Content, rhs: LabelProvider.Content) -> Bool {
-    return lhs.hashValue == rhs.hashValue
-}
-
-public func ==(lhs: LabelProvider.Content.Style, rhs: LabelProvider.Content.Style) -> Bool {
-    return lhs.hashValue == rhs.hashValue
-}
-
